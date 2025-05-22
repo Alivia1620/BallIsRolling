@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.AI;
+using UnityEngine.UI;
 using TMPro;
 
 public class NewMonoBehaviourScript : MonoBehaviour
@@ -29,6 +31,19 @@ public class NewMonoBehaviourScript : MonoBehaviour
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
         rb.AddForce(movement * speed);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            //The player is destroyed when it collides with an enemy
+            Destroy(gameObject);
+
+            //Set the text to "You lose!"
+            winTextObject.gameObject.SetActive(true);
+            winTextObject.GetComponent<TextMeshProUGUI>().text = "You lose!";
+        }
     }
 
     //The movementValue will capture data from the x-and y-axis and store it
