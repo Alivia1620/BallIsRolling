@@ -67,6 +67,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
         if (count >= 13)
         {
             winTextObject.SetActive(true);
+            winTextObject.GetComponent<TextMeshProUGUI>().text = "You win!";
+
+            Destroy(GameObject.FindGameObjectWithTag("Enemy"));
         }
     }
 
